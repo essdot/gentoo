@@ -2,6 +2,18 @@
 
 Tools for [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators).
 
+* [accum](#accum)
+* [compose](#compose)
+* [dedupe](#dedupe)
+* [filter](#filter)
+* [forEach](#foreach)
+* [lastValue](#lastvalue)
+* [map](#map)
+* [nthValue](#nthvalue)
+* [pluck](#pluck)
+* [skip](#skip)
+* [take](#take)
+
 ## accum
 
 `accum(gen) -> Generator`
