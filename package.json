@@ -1,0 +1,19 @@
+{
+  "name": "gentoo",
+  "version": "1.0.0",
+  "description": "Generator tools",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "babel-node test/index.js",
+    "build": "babel src --out-dir lib"
+  },
+  "keywords": [
+    "generator"
+  ],
+  "author": "essdot <justinsippel@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "tape": "^4.2.0"
+  }
+}
