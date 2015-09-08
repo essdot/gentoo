@@ -38,22 +38,22 @@ Compose any number of generators. The returned generator will yield the values o
 ```javascript
 
 function * gen1 () {
-  yield 1
+  yield '🍕'
 }
 
 function * gen2 () {
-  yield 2
+  yield '🍤'
 }
 
 function * gen3 () {
-  yield 3
+  yield '🍓'
 }
 
 const composed = gentoo.compose(gen1(), gen2(), gen3())
 
 [...composed]
 
-// [1, 2, 3]
+// ['🍕', '🍤', '🍓']
 ```
 
 ## dedupe
@@ -64,18 +64,18 @@ Returns a generator which iterates over the values from `gen` and yields values 
 
 ```javascript
 function dupeGenerator () {
-  yield 1
-  yield 1
-  yield 2
-  yield 2
-  yield 3
-  yield 3
+  yield '😎'
+  yield '😎'
+  yield '😳'
+  yield '😳'
+  yield '😅'
+  yield '😅'
 }
 
 const dedupeGen = gentoo.dedupe(dupeGenerator())
 
 [...dedupeGen]
-// [1, 2, 3]
+// ['😎', '😳', '😅']
 ```
 
 ## filter
@@ -116,14 +116,14 @@ Calls `fn` for each value of `gen`.
 
 ```javascript
 function gen () {
-  yield 1 
-  yield 2 
-  yield 3 
+  yield '🍉'
+  yield '🍜'
+  yield '🍔'
 }
 
 gentoo.forEach(gen(), (n) => console.log(n))
 
-// logs "1 2 3"
+// logs "🍉🍜🍔"
 ```
 
 ## lastValue
@@ -135,13 +135,13 @@ Returns the last value from `gen`. **NOTE:** you should only pass `lastValue` a 
 ```javascript
 
 function gen () {
-  yield 1 
-  yield 2 
-  yield 3 
+  yield '🚤'
+  yield '🚁'
+  yield '👑'
 }
 
 gentoo.lastValue(gen())
-// 3
+// '👑'
 ```
 
 ## map
@@ -177,13 +177,13 @@ Returns the `n`th value (zero-based) from `gen`.
 
 ```javascript
 function gen () {
-  yield 'a'
-  yield 'b'
-  yield 'c'
+  yield '📀'
+  yield '📹'
+  yield '🎈'
 }
 
 gentoo.nthValue(gen(), 1)
-// 'b'
+// '📹'
 ```
 
 ## pluck
@@ -194,21 +194,21 @@ Returns a generator that plucks the property `name` from each of `gen`'s values.
 
 ```javascript
 function * gen () {
-  yield {a: 1, b: 2, c: 3}
-  yield {a: 4, b: 5, c: 6}
-  yield {a: 7, b: 8, c: 9}
+  yield {animal: '🐮', flower: '🌷', tree: '🌲'}
+  yield {animal: '🐗', flower: '🌹', tree: '🌳'}
+  yield {animal: '🐵', flower: '🌺', tree: '🌴'}
 }
 
-const pluckGen = gentoo.pluck(gen(), 'b')
+const pluckGen = gentoo.pluck(gen(), 'flower')
 
 pluckGen.next().value
-// 2
+// '🌷'
 
 pluckGen.next().value
-// 5
+// '🌹'
 
 pluckGen.next().value
-// 8
+// '🌺'
 ```
 
 ## skip
@@ -247,11 +247,11 @@ Takes `n` values from `gen` and returns the values in an array.
 
 ```javascript
 function gen () {
-  yield 1 
-  yield 2 
-  yield 3 
+  yield '🐍'
+  yield '🌀'
+  yield '🌊'
 }
 
 gentoo.take(gen(), 2)
-// [1, 2]
+// ['🐍', '🌀']
 ```
