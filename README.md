@@ -155,13 +155,13 @@ Returns the `n`th value (zero-based) from `gen`.
 
 ```javascript
 function gen () {
-  yield 1 
-  yield 2 
-  yield 3 
+  yield 'a'
+  yield 'b'
+  yield 'c'
 }
 
 gentoo.nthValue(gen(), 1)
-// 2
+// 'b'
 ```
 
 ## pluck
