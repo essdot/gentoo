@@ -66,7 +66,6 @@ test('dedupe w/function', t => {
 
 test('filter', t => {
   const moduloSix = (n) => n % 6 === 0
-
   const filterGen = lib.filter(makeInfiniteGenerator(), moduloSix)
 
   t.equal(filterGen.next().value, 6)

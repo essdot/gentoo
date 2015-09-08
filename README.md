@@ -80,7 +80,7 @@ const dedupeGen = gentoo.dedupe(dupeGenerator())
 
 ## filter
 
-`filter(gen, fn, thisValue) -> Generator`
+`filter(gen, fn [, thisValue]) -> Generator`
 
 Returns a generator which will iterate over values from `gen` until `fn` returns a truthy result.
 

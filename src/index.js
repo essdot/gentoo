@@ -1,8 +1,8 @@
 export function * accum (gen) {
   let results = []
   for (let v of gen) {
-    results.push(v)
-    yield results
+    results = results.concat(v)
+    yield (results.slice())
   }
 }
 
