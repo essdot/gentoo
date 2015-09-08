@@ -125,22 +125,13 @@ test('pluck', t => {
   t.end()
 })
 
-test('slice', t => {
-  const sliceGen = lib.slice(makeInfiniteGenerator(), 2)
-
-  t.equal(sliceGen.next().value, 6)
-  t.equal(sliceGen.next().value, 8)
-
-  t.end()
-})
-
-test('slice skips generator values before next is called', t => {
+test('skip', t => {
   const gen = makeInfiniteGenerator()
-  // const sliceGen =
 
-  lib.slice(gen, 2)
+  lib.skip(gen, 2)
 
   t.equal(gen.next().value, 6)
+  t.equal(gen.next().value, 8)
 
   t.end()
 })
