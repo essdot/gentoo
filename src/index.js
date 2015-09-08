@@ -51,8 +51,20 @@ export function lastValue (gen) {
 }
 
 export function * map (gen, fn, thisValue) {
-  for (let v of gen) {
-    yield (fn.call(thisValue, v))
+  while (true) {
+    let v = gen.next()
+
+    if (v.done && !v.value) {
+      return
+    }
+
+    let result = fn.call(thisValue, v.value)
+
+    if (v.done) {
+      return result
+    }
+
+    yield result
   }
 }
 

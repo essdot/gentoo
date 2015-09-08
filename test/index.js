@@ -103,14 +103,19 @@ test('map', t => {
 
 test('map is done when underlying generator done', t => {
   const minusOne = n => n - 1
-  const mapGen = lib.map(makeGenerator(), minusOne)
+  const mapGen = lib.map(makeGen(), minusOne)
 
   t.deepEqual(mapGen.next(), {value: 0, done: false})
   t.deepEqual(mapGen.next(), {value: 1, done: false})
-  t.deepEqual(mapGen.next(), {value: 2, done: false})
-  t.deepEqual(mapGen.next(), {value: undefined, done: true})
+  t.deepEqual(mapGen.next(), {value: 2, done: true})
 
   t.end()
+
+  function * makeGen () {
+    yield 1
+    yield 2
+    return 3
+  }
 })
 
 test('nthValue', t => {
