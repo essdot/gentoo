@@ -76,11 +76,13 @@ gentoo.lastValue(gen())
 
 ## filter
 
-`filter(gen, fn) -> Generator`
+`filter(gen, fn, thisValue) -> Generator`
 
 Returns a generator which will iterate over values from `gen` until `fn` returns a truthy result.
 
 Every time `next()` is called, a value is retrieved from`gen` and passed to `fn`, until the result of calling `fn` is truthy. At that point, the value from `gen` will be yielded.
+
+`thisValue` can optionally passed in, for the context `fn` is called in.
 
 ```javascript
 
