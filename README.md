@@ -191,7 +191,7 @@ pluckGen.next().value
 
 `slice(gen, n) -> Generator`
 
-"Skips" the first `n` values of `gen`.
+Returns a generator that "skips" the first `n` values of `gen`.
 
 ```javascript
 function * genInfinite () {
