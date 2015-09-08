@@ -48,6 +48,25 @@ test('dedupe', t => {
   t.end()
 })
 
+test('dedupe w/function', t => {
+  t.plan(9)
+
+  const dedupeGen = lib.dedupe(makeDupeGenerator(), eq)
+
+  t.equal(dedupeGen.next().value, 1)
+  t.equal(dedupeGen.next().value, 2)
+  t.equal(dedupeGen.next().value, 3)
+  t.ok(dedupeGen.next().done)
+
+  t.end()
+
+  function eq (a, b) {
+    t.pass('eq called')
+
+    return a === b
+  }
+})
+
 test('filter', t => {
   const moduloSix = (n) => n % 6 === 0
 
