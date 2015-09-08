@@ -1,6 +1,6 @@
-# Gentoo - Generator tools
+# Gentoo - *Gen*erator *too*ls
 
-Tools for ES6 generators.
+Tools for [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators).
 
 ## accum
 
@@ -80,7 +80,7 @@ gentoo.lastValue(gen())
 
 Returns a generator which will iterate over values from `gen` until `fn` returns a truthy result.
 
-Every time `next()` is called, `gen` is iterated over, and each value is passed to `fn`, until the result of calling `fn` is truthy. At that point, the value from `gen` will be yielded.
+Every time `next()` is called, a value is retrieved from`gen` and passed to `fn`, until the result of calling `fn` is truthy. At that point, the value from `gen` will be yielded.
 
 ```javascript
 
