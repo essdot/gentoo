@@ -1,5 +1,6 @@
+import * as lib from '../lib'
+
 const test = require('tape')
-const lib = require('../lib')
 
 test('accum', t => {
   const accumGen = lib.accum(makeInfiniteGenerator())
@@ -18,16 +19,7 @@ test('compose', t => {
     makeGenerator3()
   )
 
-  t.equal(composed.next().value, 1)
-  t.equal(composed.next().value, 2)
-  t.equal(composed.next().value, 3)
-  t.equal(composed.next().value, 4)
-  t.equal(composed.next().value, 5)
-  t.equal(composed.next().value, 6)
-  t.equal(composed.next().value, 7)
-  t.equal(composed.next().value, 8)
-  t.equal(composed.next().value, 9)
-  t.ok(composed.next().done)
+  t.deepEqual([...composed], [1, 2, 3, 4, 5, 6, 7, 8, 9])
 
   t.end()
 
@@ -118,9 +110,7 @@ test('nthValue', t => {
 test('pluck', t => {
   const pluckGen = lib.pluck(makeObjectGenerator(), 'b')
 
-  t.equal(pluckGen.next().value, 2)
-  t.equal(pluckGen.next().value, 5)
-  t.equal(pluckGen.next().value, 8)
+  t.deepEqual([...pluckGen], [2, 5, 8])
 
   t.end()
 })
