@@ -56,6 +56,28 @@ const composed = gentoo.compose(gen1(), gen2(), gen3())
 // [1, 2, 3]
 ```
 
+## dedupe
+
+`dedupe(gen [, eqFn]) -> Generator`
+
+Returns a generator which iterates over the values from `gen` and yields values which are different than the previous value. `eqFn` may optionally be passed, to evaluate the equality of two values. By default, `===` is used.
+
+```javascript
+function dupeGenerator () {
+  yield 1
+  yield 1
+  yield 2
+  yield 2
+  yield 3
+  yield 3
+}
+
+const dedupeGen = gentoo.dedupe(dupeGenerator())
+
+[...dedupeGen]
+// [1, 2, 3]
+```
+
 ## filter
 
 `filter(gen, fn, thisValue) -> Generator`
