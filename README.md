@@ -194,8 +194,8 @@ Returns a generator that plucks the property `name` from each of `gen`'s values.
 
 ```javascript
 function * gen () {
-  yield {animal: '🐮', flower: '🌷', tree: '🌲'}
-  yield {animal: '🐗', flower: '🌹', tree: '🌳'}
+  yield {animal: '🐮', flower: '🌷', tree: '🌲'},
+  yield {animal: '🐗', flower: '🌹', tree: '🌳'},
   yield {animal: '🐵', flower: '🌺', tree: '🌴'}
 }
 
