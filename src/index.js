@@ -83,7 +83,7 @@ export function * partition (gen, fn) {
       no.push(v)
     }
 
-    yield {yes: yes.slice(), no: no.slice()}
+    yield [yes.slice(), no.slice()]
   }
 }
 

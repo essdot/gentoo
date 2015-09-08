@@ -129,20 +129,9 @@ test('nthValue', t => {
 test('partition', t => {
   const partGen = lib.partition(makeGenerator(), (n) => n % 2 === 0)
 
-  t.deepEqual(partGen.next().value, {
-    yes: [],
-    no: [1]
-  })
-
-  t.deepEqual(partGen.next().value, {
-    yes: [2],
-    no: [1]
-  })
-
-  t.deepEqual(partGen.next().value, {
-    yes: [2],
-    no: [1, 3]
-  })
+  t.deepEqual(partGen.next().value, [[], [1]])
+  t.deepEqual(partGen.next().value, [[2], [1]])
+  t.deepEqual(partGen.next().value, [[2], [1, 3]])
 
   t.end()
 })

@@ -10,6 +10,7 @@ Tools for [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScri
 * [lastValue](#lastvalue)
 * [map](#map)
 * [nthValue](#nthvalue)
+* [partition](#partition)
 * [pluck](#pluck)
 * [skip](#skip)
 * [take](#take)
@@ -196,6 +197,35 @@ function gen () {
 
 gentoo.nthValue(gen(), 1)
 // '📹'
+```
+
+## partition
+
+`partition(gen, fn) -> Generator`
+
+Returns a generator that partitions the values from `gen` into two arrays: those for which `fn` returns a truthy value, and those for which `fn` returns a falsey value.
+
+```javascript
+function * gen () {
+  yield 1
+  yield 2
+  yield 3
+}
+
+function even (n) {
+  return n % 2 === 0
+}
+
+const partitionGen = gentoo.partition(gen(), even)
+
+partitionGen.next().value
+// [[], [1]]
+
+partitionGen.next().value
+// [[2], [1]]
+
+partitionGen.next().value
+// [[2], [1, 3]]
 ```
 
 ## pluck
