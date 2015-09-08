@@ -193,7 +193,7 @@ pluckGen.next().value
 
 `skip(gen, n) -> void`
 
-"Skips" the first `n` values of `gen`.
+Reads `n` values from `gen` and throws them away.
 
 ```javascript
 function * genInfinite () {
