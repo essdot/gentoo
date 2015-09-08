@@ -6,7 +6,7 @@ module.exports.forEach = forEach
 module.exports.map = map
 module.exports.nthValue = nthValue
 module.exports.pluck = pluck
-module.exports.slice = slice
+module.exports.skip = skip
 module.exports.take = take
 
 function * accum (gen) {
@@ -54,12 +54,10 @@ function take (gen, n) {
   }
 }
 
-function * slice (gen, n) {
+function skip (gen, n) {
   for (let i = 0; i < n; i++) {
     gen.next()
   }
-
-  yield * gen
 }
 
 function * map (gen, fn, thisValue) {

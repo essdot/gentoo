@@ -189,11 +189,11 @@ pluckGen.next().value
 // 8
 ```
 
-## slice
+## skip
 
-`slice(gen, n) -> Generator`
+`skip(gen, n) -> void`
 
-Returns a generator that "skips" the first `n` values of `gen`.
+"Skips" the first `n` values of `gen`.
 
 ```javascript
 function * genInfinite () {
@@ -203,15 +203,17 @@ function * genInfinite () {
   }
 }
 
-const sliceGen = gentoo.slice(genInfinite(), 2)
+const gen = genInfinite()
 
-sliceGen.next().value
+gentoo.skip(gen, 2)
+
+gen.next().value
 // 2
 
-sliceGen.next().value
+gen.next().value
 // 3
 
-sliceGen.next().value
+gen.next().value
 // 4
 ```
 

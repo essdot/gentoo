@@ -134,6 +134,17 @@ test('slice', t => {
   t.end()
 })
 
+test('slice skips generator values before next is called', t => {
+  const gen = makeInfiniteGenerator()
+  // const sliceGen =
+
+  lib.slice(gen, 2)
+
+  t.equal(gen.next().value, 6)
+
+  t.end()
+})
+
 test('take', t => {
   t.deepEqual(lib.take(makeInfiniteGenerator(), 3), [2, 4, 6])
   t.deepEqual(lib.take(makeInfiniteGenerator(), 2), [2, 4])
