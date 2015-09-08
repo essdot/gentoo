@@ -154,19 +154,19 @@ Returns a generator that maps `fn` over the values of `gen`. Every time `next()`
 
 ```javascript
 function gen () {
-  yield 1 
-  yield 2 
-  yield 3 
+  yield '🍪'
+  yield '🍩'
+  yield '🍟'
 }
 
-function multiplyBy2 (n) {
-  return n * 2
+function repeat (n) {
+  return n + n
 }
 
-const doubleGen = gentoo.map(gen(), multiplyBy2)
+const repeatGen = gentoo.map(gen(), repeat)
 
 [...doubleGen]
-// [2, 4, 6]
+// ['🍪🍪', '🍩🍩', '🍟🍟']
 ```
 
 ## nthValue
