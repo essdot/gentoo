@@ -1,14 +1,17 @@
 {
   "name": "gentoo",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Generator tools",
   "main": "lib/index.js",
   "scripts": {
     "test": "babel-node test/index.js",
     "build": "babel src --out-dir lib"
   },
-  "keywords": ["generator", "es6"],
-  "repository" : {
+  "keywords": [
+    "generator",
+    "es6"
+  ],
+  "repository": {
     "type": "git",
     "url": "https://github.com/essdot/gentoo.git"
   },
