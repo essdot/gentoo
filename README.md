@@ -165,7 +165,7 @@ function repeat (n) {
 
 const repeatGen = gentoo.map(gen(), repeat)
 
-[...doubleGen]
+[...repeatGen]
 // ['🍪🍪', '🍩🍩', '🍟🍟']
 ```
 
