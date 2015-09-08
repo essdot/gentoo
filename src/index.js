@@ -87,13 +87,17 @@ export function skip (gen, n) {
 export function take (gen, n) {
   const results = []
 
-  for (let v of gen) {
-    results.push(v)
+  for (let i = 0; i < n; i++) {
+    let v = gen.next()
 
-    if (results.length === n) {
-      return results
+    results.push(v.value)
+
+    if (v.done) {
+      break
     }
   }
+
+  return results
 }
 
 function identity (a, b) {

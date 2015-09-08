@@ -153,6 +153,16 @@ test('take', t => {
   t.end()
 })
 
+test('take w/generator that runs out', t => {
+  t.deepEqual(lib.take(makeGen(), 3), [1])
+
+  t.end()
+
+  function * makeGen () {
+    return 1
+  }
+})
+
 test('thisValue', t => {
   let thisObj = {}
   t.plan(9)
