@@ -37,15 +37,15 @@ Compose any number of generators. The returned generator will yield the values o
 
 ```javascript
 
-function * gen1() {
+function * gen1 () {
   yield 1
 }
 
-function * gen2() {
+function * gen2 () {
   yield 2
 }
 
-function * gen3() {
+function * gen3 () {
   yield 3
 }
 
@@ -68,7 +68,7 @@ Every time `next()` is called, a value is retrieved from`gen` and passed to `fn`
 
 ```javascript
 
-function gen() {
+function gen () {
   yield 1 
   yield 2 
   yield 3 
@@ -93,7 +93,7 @@ Calls `fn` for each value of `gen`.
 `thisValue` can optionally passed in, for the context `fn` is called in.
 
 ```javascript
-function gen() {
+function gen () {
   yield 1 
   yield 2 
   yield 3 
@@ -112,7 +112,7 @@ Returns the last value from `gen`. **NOTE:** you should only pass `lastValue` a 
 
 ```javascript
 
-function gen() {
+function gen () {
   yield 1 
   yield 2 
   yield 3 
@@ -131,13 +131,13 @@ Returns a generator that maps `fn` over the values of `gen`. Every time `next()`
 `thisValue` can optionally be passed in, for the context `fn` is called in.
 
 ```javascript
-function gen() {
+function gen () {
   yield 1 
   yield 2 
   yield 3 
 }
 
-function multiplyBy2(n) {
+function multiplyBy2 (n) {
   return n * 2
 }
 
@@ -154,7 +154,7 @@ const doubleGen = gentoo.map(gen(), multiplyBy2)
 Returns the `n`th value (zero-based) from `gen`.
 
 ```javascript
-function gen() {
+function gen () {
   yield 1 
   yield 2 
   yield 3 
@@ -224,7 +224,7 @@ gen.next().value
 Takes `n` values from `gen` and returns the values in an array.
 
 ```javascript
-function gen() {
+function gen () {
   yield 1 
   yield 2 
   yield 3 
