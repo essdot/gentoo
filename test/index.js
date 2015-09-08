@@ -182,7 +182,7 @@ function * makeGenerator3 () {
   yield 9
 }
 
-function * makeDupeGenerator() {
+function * makeDupeGenerator () {
   yield 1
   yield 1
   yield 2
