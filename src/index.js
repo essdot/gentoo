@@ -80,7 +80,9 @@ export function * pluck (gen, name) {
 
 export function skip (gen, n) {
   for (let i = 0; i < n; i++) {
-    gen.next()
+    if (gen.next().done) {
+      return
+    }
   }
 }
 
