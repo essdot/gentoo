@@ -40,10 +40,7 @@ test('compose w/infinite generator', t => {
 test('dedupe', t => {
   const dedupeGen = lib.dedupe(makeDupeGenerator())
 
-  t.equal(dedupeGen.next().value, 1)
-  t.equal(dedupeGen.next().value, 2)
-  t.equal(dedupeGen.next().value, 3)
-  t.ok(dedupeGen.next().done)
+  t.deepEqual([...dedupeGen], [1, 2, 3])
 
   t.end()
 })
