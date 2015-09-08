@@ -8,7 +8,7 @@
     "build": "babel src --out-dir lib"
   },
   "keywords": [
-    "generator"
+    "generator", "es6"
   ],
   "author": "essdot <justinsippel@gmail.com>",
   "license": "MIT",
