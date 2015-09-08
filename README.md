@@ -141,14 +141,8 @@ function multiplyBy2(n) {
 
 const doubleGen = gentoo.map(gen(), multiplyBy2)
 
-doubleGen.next().value
-// 2
-
-doubleGen.next().value
-// 4
-
-doubleGen.next().value
-// 6
+[...doubleGen]
+// [2, 4, 6]
 ```
 
 ## nthValue
