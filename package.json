@@ -7,9 +7,7 @@
     "test": "babel-node test/index.js",
     "build": "babel src --out-dir lib"
   },
-  "keywords": [
-    "generator", "es6"
-  ],
+  "keywords": ["generator", "es6"],
   "repository" : {
     "type": "git",
     "url": "https://github.com/essdot/gentoo.git"
