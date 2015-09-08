@@ -56,24 +56,6 @@ const composed = gentoo.compose(gen1(), gen2(), gen3())
 // [1, 2, 3]
 ```
 
-## lastValue
-
-`lastValue(gen) -> [any]`
-
-Returns the last value from `gen`. **NOTE:** you should only pass `lastValue` a generator which will end. If `gen` has an infinite number of values, `lastValue` will never finish.
-
-```javascript
-
-function gen() {
-  yield 1 
-  yield 2 
-  yield 3 
-}
-
-gentoo.lastValue(gen())
-// 3
-```
-
 ## filter
 
 `filter(gen, fn, thisValue) -> Generator`
@@ -120,6 +102,24 @@ function gen() {
 gentoo.forEach(gen(), (n) => console.log(n))
 
 // logs "1 2 3"
+```
+
+## lastValue
+
+`lastValue(gen) -> [any]`
+
+Returns the last value from `gen`. **NOTE:** you should only pass `lastValue` a generator which will end. If `gen` has an infinite number of values, `lastValue` will never finish.
+
+```javascript
+
+function gen() {
+  yield 1 
+  yield 2 
+  yield 3 
+}
+
+gentoo.lastValue(gen())
+// 3
 ```
 
 ## map
