@@ -72,6 +72,21 @@ export function nthValue (gen, n) {
   return gen.next().value
 }
 
+export function * partition (gen, fn) {
+  const yes = []
+  const no = []
+
+  for (let v of gen) {
+    if (fn(v)) {
+      yes.push(v)
+    } else {
+      no.push(v)
+    }
+
+    yield {yes: yes.slice(), no: no.slice()}
+  }
+}
+
 export function * pluck (gen, name) {
   for (let v of gen) {
     yield (v[name])

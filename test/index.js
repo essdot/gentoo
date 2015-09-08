@@ -126,6 +126,27 @@ test('nthValue', t => {
   t.end()
 })
 
+test('partition', t => {
+  const partGen = lib.partition(makeGenerator(), (n) => n % 2 === 0)
+
+  t.deepEqual(partGen.next().value, {
+    yes: [],
+    no: [1]
+  })
+
+  t.deepEqual(partGen.next().value, {
+    yes: [2],
+    no: [1]
+  })
+
+  t.deepEqual(partGen.next().value, {
+    yes: [2],
+    no: [1, 3]
+  })
+
+  t.end()
+})
+
 test('pluck', t => {
   const pluckGen = lib.pluck(makeObjectGenerator(), 'b')
 
