@@ -22,18 +22,6 @@ test('compose', t => {
   t.deepEqual([...composed], [1, 2, 3, 4, 5, 6, 7, 8, 9])
 
   t.end()
-
-  function * makeGenerator2 () {
-    yield 4
-    yield 5
-    yield 6
-  }
-
-  function * makeGenerator3 () {
-    yield 7
-    yield 8
-    yield 9
-  }
 })
 
 test('compose w/infinite generator', t => {
@@ -153,6 +141,18 @@ function * makeGenerator () {
   yield 1
   yield 2
   yield 3
+}
+
+function * makeGenerator2 () {
+  yield 4
+  yield 5
+  yield 6
+}
+
+function * makeGenerator3 () {
+  yield 7
+  yield 8
+  yield 9
 }
 
 function * makeInfiniteGenerator () {
