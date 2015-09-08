@@ -25,10 +25,6 @@ export function * dedupe (gen, _eqFn) {
     valueSeen = true
     previousValue = v
   }
-
-  function identity (a, b) {
-    return a === b
-  }
 }
 
 export function * filter (gen, fn, thisValue) {
@@ -98,4 +94,8 @@ export function take (gen, n) {
       return results
     }
   }
+}
+
+function identity (a, b) {
+  return a === b
 }
