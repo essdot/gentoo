@@ -2,7 +2,9 @@
 
 Tools for ES6 generators.
 
-## accum(gen) -> Generator
+## accum
+
+`accum(gen) -> Generator`
 
 Returns a new generator which yields an array accumulating the values from `gen`. Every time `next()` is called, the newest value from `gen` is added to the end of the array the generator yields.
 
@@ -27,7 +29,9 @@ accumGen.next().value
 // [1, 2, 3]
 ```
 
-## compose(...generators) -> Generator
+## compose
+
+`compose(...generators) -> Generator`
 
 Compose any number of generators. The returned generator will yield the values of the first generator until it's done, then the values of the second until it's done, etc.
 
@@ -52,7 +56,9 @@ const composed = gentoo.compose(gen1(), gen2(), gen3())
 // [1, 2, 3]
 ```
 
-## lastValue(gen) -> [any]
+## lastValue
+
+`lastValue(gen) -> [any]`
 
 Returns the last value from `gen`. **NOTE:** you should only pass `lastValue` a generator which will end. If `gen` has an infinite number of values, `lastValue` will never finish.
 
@@ -68,7 +74,9 @@ gentoo.lastValue(gen())
 // 3
 ```
 
-## filter(gen, fn) -> Generator
+## filter
+
+`filter(gen, fn) -> Generator`
 
 Returns a generator which will iterate over values from `gen` until `fn` returns a truthy result.
 
@@ -92,7 +100,9 @@ filterGen.next().value
 // 2
 ```
 
-## filter(gen, fn [, thisValue]) -> void
+## forEach
+
+`forEach(gen, fn [, thisValue]) -> void`
 
 Calls `fn` for each value of `gen`.
 
@@ -110,7 +120,9 @@ gentoo.forEach(gen(), (n) => console.log(n))
 // logs "1 2 3"
 ```
 
-## map(gen, fn [, thisValue]) -> Generator
+## map
+
+`map(gen, fn [, thisValue]) -> Generator`
 
 Returns a generator that maps `fn` over the values of `gen`. Every time `next()` is called, the next value of `gen` will be passed to `fn`, and the result will be yielded.
 
@@ -139,7 +151,9 @@ doubleGen.next().value
 // 6
 ```
 
-## nthValue(gen, n) -> [any]
+## nthValue
+
+`nthValue(gen, n) -> [any]`
 
 Returns the `n`th value (zero-based) from `gen`.
 
@@ -154,7 +168,9 @@ gentoo.nthValue(gen(), 1)
 // 2
 ```
 
-## pluck(gen, name) -> Generator
+## pluck
+
+`pluck(gen, name) -> Generator`
 
 Returns a generator that plucks the property `name` from each of `gen`'s values. Every time `next()` is called, the next value from `gen` is retrieved, and the `name` property of that value is yielded.
 
@@ -177,7 +193,9 @@ pluckGen.next().value
 // 8
 ```
 
-## slice(gen, n) -> Generator
+## slice
+
+`slice(gen, n) -> Generator`
 
 "Skips" the first `n` values of `gen`.
 
@@ -201,7 +219,9 @@ sliceGen.next().value
 // 4
 ```
 
-## take(gen, n) -> Array
+## take
+
+`take(gen, n) -> Array`
 
 Takes `n` values from `gen` and returns the values in an array.
 
