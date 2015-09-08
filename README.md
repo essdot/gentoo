@@ -86,7 +86,7 @@ Returns a generator which will iterate over values from `gen` until `fn` returns
 
 Every time `next()` is called, a value is retrieved from`gen` and passed to `fn`, until the result of calling `fn` is truthy. At that point, the value from `gen` will be yielded.
 
-`thisValue` can optionally passed in, for the context `fn` is called in.
+`thisValue` can optionally be passed in, for the context `fn` is called in.
 
 ```javascript
 
@@ -112,7 +112,7 @@ filterGen.next().value
 
 Calls `fn` for each value of `gen`.
 
-`thisValue` can optionally passed in, for the context `fn` is called in.
+`thisValue` can optionally be passed in, for the context `fn` is called in.
 
 ```javascript
 function gen () {
