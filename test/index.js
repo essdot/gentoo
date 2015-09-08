@@ -37,6 +37,17 @@ test('compose w/infinite generator', t => {
   t.end()
 })
 
+test('dedupe', t => {
+  const dedupeGen = lib.dedupe(makeDupeGenerator())
+
+  t.equal(dedupeGen.next().value, 1)
+  t.equal(dedupeGen.next().value, 2)
+  t.equal(dedupeGen.next().value, 3)
+  t.ok(dedupeGen.next().done)
+
+  t.end()
+})
+
 test('filter', t => {
   const moduloSix = (n) => n % 6 === 0
 
@@ -153,6 +164,15 @@ function * makeGenerator3 () {
   yield 7
   yield 8
   yield 9
+}
+
+function * makeDupeGenerator() {
+  yield 1
+  yield 1
+  yield 2
+  yield 2
+  yield 3
+  yield 3
 }
 
 function * makeInfiniteGenerator () {

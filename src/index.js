@@ -12,6 +12,25 @@ export function * compose (...gens) {
   }
 }
 
+export function * dedupe (gen, _eqFn) {
+  let previousValue
+  let valueSeen = false
+  const eqFn = _eqFn || identity
+
+  for (let v of gen) {
+    if (!valueSeen || !eqFn(v, previousValue)) {
+      yield v
+    }
+
+    valueSeen = true
+    previousValue = v
+  }
+
+  function identity (a, b) {
+    return a === b
+  }
+}
+
 export function * filter (gen, fn, thisValue) {
   for (let v of gen) {
     if (fn.call(thisValue, v)) {
