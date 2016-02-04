@@ -4,7 +4,7 @@
   "description": "Generator tools",
   "main": "lib/index.js",
   "scripts": {
-    "test": "babel-node test/index.js",
+    "test": "babel-node test/index.js --presets es2015",
     "build": "babel src --out-dir lib"
   },
   "keywords": [
@@ -18,7 +18,9 @@
   "author": "sdot <justinsippel@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^5.8.23",
+    "babel": "6.3.13",
+    "babel-cli": "6.3.17",
+    "babel-preset-es2015": "6.3.13",
     "tape": "^4.2.0"
   }
 }
