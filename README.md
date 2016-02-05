@@ -14,6 +14,7 @@ Tools for [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScri
 * [pluck](#pluck)
 * [skip](#skip)
 * [take](#take)
+* [loop](#loop)
 
 ## accum
 
@@ -288,7 +289,7 @@ gen.next().value
 Takes `n` values from `gen` and returns the values in an array.
 
 ```javascript
-function gen () {
+function * gen () {
   yield '🐍'
   yield '🌀'
   yield '🌊'
@@ -296,4 +297,41 @@ function gen () {
 
 gentoo.take(gen(), 2)
 // ['🐍', '🌀']
+```
+
+## loop
+
+`loop(gen) -> Generator`
+
+Turns `gen` into an infinite loop. Yields the values from `gen` until `gen` is done, then yields those values forever in a loop.
+
+```javascript
+function * gen () {
+  yield 1
+  yield 2
+  yield 3
+}
+
+const looped = gentoo.loop(gen())
+
+looped.next().value
+// 1
+
+looped.next().value
+// 2
+
+looped.next().value
+// 3
+
+looped.next().value
+// 1
+
+looped.next().value
+// 2
+
+looped.next().value
+// 3
+
+looped.next().value
+// 1
 ```

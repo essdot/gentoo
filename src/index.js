@@ -117,6 +117,28 @@ export function take (gen, n) {
   return results
 }
 
+export function * loop (gen) {
+  const results = []
+  let i = 0
+
+  while (true) {
+    let v = gen.next()
+
+    if (v.done) {
+      break
+    } else {
+      results.push(v.value)
+      yield v.value
+    }
+  }
+
+  while (true) {
+    yield results[i++]
+
+    i = i % results.length
+  }
+}
+
 function identity (a, b) {
   return a === b
 }

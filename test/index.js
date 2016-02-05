@@ -188,6 +188,37 @@ test('thisValue', t => {
   }
 })
 
+test('loop', t => {
+  const looped = lib.loop(makeGenerator())
+
+  const composeGen = lib.compose(makeGenerator2(), makeGenerator3())
+  const looped2 = lib.loop(composeGen)
+
+  t.equal(looped.next().value, 1)
+  t.equal(looped.next().value, 2)
+  t.equal(looped.next().value, 3)
+  t.equal(looped.next().value, 1)
+  t.equal(looped.next().value, 2)
+  t.equal(looped.next().value, 3)
+  t.equal(looped.next().value, 1)
+
+  t.equal(looped2.next().value, 4)
+  t.equal(looped2.next().value, 5)
+  t.equal(looped2.next().value, 6)
+  t.equal(looped2.next().value, 7)
+  t.equal(looped2.next().value, 8)
+  t.equal(looped2.next().value, 9)
+  t.equal(looped2.next().value, 4)
+  t.equal(looped2.next().value, 5)
+  t.equal(looped2.next().value, 6)
+  t.equal(looped2.next().value, 7)
+  t.equal(looped2.next().value, 8)
+  t.equal(looped2.next().value, 9)
+  t.equal(looped2.next().value, 4)
+
+  t.end()
+})
+
 function * makeGenerator () {
   yield 1
   yield 2
