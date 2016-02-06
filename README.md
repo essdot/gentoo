@@ -303,7 +303,7 @@ gentoo.take(gen(), 2)
 
 `loop(gen) -> Generator`
 
-Turns `gen` into an infinite loop. Yields the values from `gen` until `gen` is done, then yields those values forever in a loop.
+Yields the values from `gen` until `gen` is done, then yields those values forever in a loop.
 
 ```javascript
 function * gen () {
