@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "babel-node test/index.js --presets es2015",
-    "build": "babel src --out-dir lib"
+    "build": "babel src --out-dir lib --presets es2015"
   },
   "keywords": [
     "generator",
