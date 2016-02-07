@@ -273,13 +273,13 @@ const gen = genInfinite()
 gentoo.skip(gen, 2)
 
 gen.next().value
-// 2
-
-gen.next().value
 // 3
 
 gen.next().value
 // 4
+
+gen.next().value
+// 5
 ```
 
 ## take
