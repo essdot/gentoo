@@ -15,6 +15,7 @@ Tools for [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScri
 * [skip](#skip)
 * [take](#take)
 * [loop](#loop)
+* [everyN] (#everyN)
 
 ## accum
 
@@ -334,4 +335,24 @@ looped.next().value
 
 looped.next().value
 // 1
+```
+
+## everyN
+
+`everyN(gen, n, [, takeFirst = true]) -> Generator`
+
+Yields every `n` values from `gen`. `takeFirst` determines whether to yield the first value from `gen`. Default is `true`.
+
+```javascript
+function * gen () {
+  let i = 0
+
+  while (true) {
+    yield i++
+  }
+}
+
+const even = gentoo.everyN(gen(), 2)         // yields 0, 2, 4, 6...
+const odd = gentoo.everyN(gen(), 2, false)   // yields 1, 3, 5, 7...
+
 ```

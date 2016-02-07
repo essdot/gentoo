@@ -139,6 +139,23 @@ export function * loop (gen) {
   }
 }
 
+export function * everyN (gen, n, takeFirst = true) {
+  let count = 0
+
+  if (takeFirst) {
+    yield gen.next().value
+  }
+
+  for (let v of gen) {
+    count++
+
+    if (count === n) {
+      yield v
+      count = 0
+    }
+  }
+}
+
 function identity (a, b) {
   return a === b
 }

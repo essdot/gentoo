@@ -1,4 +1,4 @@
-import * as lib from '../lib'
+import * as lib from '../src'
 
 const test = require('tape')
 
@@ -215,6 +215,35 @@ test('loop', t => {
   t.equal(looped2.next().value, 8)
   t.equal(looped2.next().value, 9)
   t.equal(looped2.next().value, 4)
+
+  t.end()
+})
+
+test('everyN', t => {
+  function * gen () {
+    let i = 0
+
+    while (true) {
+      yield i++
+    }
+  }
+
+  const everyOtherEven = lib.everyN(gen(), 2)
+  const everyOtherOdd = lib.everyN(gen(), 2, false)
+  const everyTen = lib.everyN(gen(), 10)
+
+  t.equal(everyOtherEven.next().value, 0)
+  t.equal(everyOtherEven.next().value, 2)
+  t.equal(everyOtherEven.next().value, 4)
+  t.equal(everyOtherEven.next().value, 6)
+
+  t.equal(everyOtherOdd.next().value, 1)
+  t.equal(everyOtherOdd.next().value, 3)
+  t.equal(everyOtherOdd.next().value, 5)
+  t.equal(everyOtherOdd.next().value, 7)
+
+  t.equal(everyTen.next().value, 0)
+  t.equal(everyTen.next().value, 10)
 
   t.end()
 })
