@@ -1,6 +1,6 @@
-import * as lib from '../src'
+import test from 'tape'
 
-const test = require('tape')
+import * as lib from '../src'
 
 test('accum', t => {
   const accumGen = lib.accum(makeInfiniteGenerator())
