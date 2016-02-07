@@ -77,7 +77,7 @@ const composed = gentoo.compose(gen1(), gen2(), gen3())
 Returns a generator which iterates over the values from `gen` and yields values which are different than the previous value. `eqFn` may optionally be passed, to evaluate the equality of two values. By default, `===` is used.
 
 ```javascript
-function dupeGenerator () {
+function * dupeGenerator () {
   yield '😎'
   yield '😎'
   yield '😳'
@@ -104,7 +104,7 @@ Every time `next()` is called, a value is retrieved from`gen` and passed to `fn`
 
 ```javascript
 
-function gen () {
+function * gen () {
   yield 1 
   yield 2 
   yield 3 
@@ -129,7 +129,7 @@ Calls `fn` for each value of `gen`.
 `thisValue` can optionally be passed in, for the context `fn` is called in.
 
 ```javascript
-function gen () {
+function * gen () {
   yield '🍉'
   yield '🍜'
   yield '🍔'
@@ -148,7 +148,7 @@ Returns the last value from `gen`. **NOTE:** you should only pass `lastValue` a 
 
 ```javascript
 
-function gen () {
+function * gen () {
   yield '🚤'
   yield '🚁'
   yield '👑'
@@ -167,7 +167,7 @@ Returns a generator that maps `fn` over the values of `gen`. Every time `next()`
 `thisValue` can optionally be passed in, for the context `fn` is called in.
 
 ```javascript
-function gen () {
+function * gen () {
   yield '🍪'
   yield '🍩'
   yield '🍟'
@@ -190,7 +190,7 @@ const repeatGen = gentoo.map(gen(), repeat)
 Returns the `n`th value (zero-based) from `gen`.
 
 ```javascript
-function gen () {
+function * gen () {
   yield '📀'
   yield '📹'
   yield '🎈'
