@@ -16,6 +16,8 @@ Tools for [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScri
 * [take](#take)
 * [loop](#loop)
 * [everyN] (#everyN)
+* [reduce] (#reduce)
+* [range] (#range)
 
 ## accum
 
@@ -355,4 +357,37 @@ function * gen () {
 const even = gentoo.everyN(gen(), 2)         // yields 0, 2, 4, 6...
 const odd = gentoo.everyN(gen(), 2, false)   // yields 1, 3, 5, 7...
 
+```
+
+## reduce
+
+`reduce(gen, fn, initial) -> [any]`
+
+Reduces the generator into a single value. The fn is invoked with (memo, value).
+
+```javascript
+function * makeGenerator () {
+  yield 1
+  yield 2
+  yield 3
+}
+
+const sum = gentoo.reduce(makeGenerator(), (memo, val) => memo + val, 0) // yields 6
+```
+
+## range
+
+`range(start, stop [, step]) -> Generator`
+
+Creates a generator that yields from start (inclusive) to stop (exclusive) with steps (optional, defaults
+to 1).
+
+```javascript
+gentoo.range(0, 5) // yields 0, 1, 2, 3, 4
+gentoo.range(2, 10. 2) // yields 2, 4, 6, 8
+```
+
+You can easily make an infinite stream by passing `Number.POSITIVE_INFINITY` to stop.
+```javascript
+const infinite = gentoo.range(0, Number.POSITIVE_INFINITY)
 ```
