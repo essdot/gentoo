@@ -157,17 +157,17 @@ export function * everyN (gen, n, takeFirst = true) {
 }
 
 export function reduce (gen, fn, initial) {
-	let memo = initial
+  let memo = initial
 
-	for (let v of gen) {
-		memo = fn(memo, v);
-	}
+  for (let v of gen) {
+	  memo = fn(memo, v);
+  }
 
-	return memo;
+  return memo;
 }
 
 export function * range (start, stop, step) {
-	let modifiedStep = step || 1
+  let modifiedStep = step || 1
   let i = start
 
   while (i < stop) {

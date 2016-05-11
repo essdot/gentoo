@@ -249,29 +249,29 @@ test('everyN', t => {
 })
 
 test('reduce', t => {
-	const gen = makeGenerator;
-	const sum = lib.reduce(gen(), (memo, val) => memo + val, 0)
-	const product = lib.reduce(gen(), (memo, val) => memo * val, 1)
+  const gen = makeGenerator;
+  const sum = lib.reduce(gen(), (memo, val) => memo + val, 0)
+  const product = lib.reduce(gen(), (memo, val) => memo * val, 1)
 
-	t.equal(sum, 6)
-	t.equal(product, 6)
+  t.equal(sum, 6)
+  t.equal(product, 6)
 
-	t.end()
+  t.end()
 
 })
 
 test('range', t => {
-	const to5 = lib.range(0, 5);
-	const from5to10 = lib.range(5, 10);
-	const from0to10every2 = lib.range(0, 10, 2);
-	const infinite = lib.range(0, Number.POSITIVE_INFINITY);
+  const to5 = lib.range(0, 5);
+  const from5to10 = lib.range(5, 10);
+  const from0to10every2 = lib.range(0, 10, 2);
+  const infinite = lib.range(0, Number.POSITIVE_INFINITY);
 
   t.deepEqual([...to5], [0, 1, 2, 3, 4])
   t.deepEqual([...from5to10], [5, 6, 7, 8, 9])
   t.deepEqual([...from0to10every2], [0, 2, 4, 6, 8])
-	t.deepEqual([...lib.take(infinite, 5)], [0, 1, 2, 3, 4])
+  t.deepEqual([...lib.take(infinite, 5)], [0, 1, 2, 3, 4])
 
-	t.end()
+  t.end()
 })
 
 function * makeGenerator () {
