@@ -294,6 +294,19 @@ test('takeWhile', t => {
   t.end()
 })
 
+test('chain', t => {
+
+  t.deepEqual([...lib.chain(makeGenerator()).filter((num) => num < 2).value()], [1]);
+  t.equal(lib.chain(makeGenerator())
+    .filter((num) => num < 3)
+    .loop()
+    .limit(5)
+    .reduce((memo, val) => memo + val, 0)
+    .value(), 7);
+
+  t.end()
+})
+
 function * makeGenerator () {
   yield 1
   yield 2

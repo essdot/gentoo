@@ -195,6 +195,20 @@ export function * takeWhile (gen, fn) {
   }
 }
 
+export function chain(value) {
+  const wrapper = {}
+  wrapper._wrapped = value
+  const funcs = [accum, compose, dedupe, filter, forEach, lastValue, map, nthValue, partition, pluck, skip, take, loop, everyN, reduce, range, limit, takeWhile]
+  funcs.forEach((func) => {
+    wrapper[func.name] = (...args) => {
+      wrapper._wrapped = func(wrapper._wrapped, ...args)
+      return wrapper
+    }
+  })
+  wrapper.value = () => wrapper._wrapped;
+  return wrapper
+}
+
 function identity (a, b) {
   return a === b
 }

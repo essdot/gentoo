@@ -20,6 +20,7 @@ Tools for [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScri
 * [range] (#range)
 * [limit] (#limit)
 * [takeWhile] (#takeWhile)
+* [chain] (#chain)
 
 ## accum
 
@@ -420,4 +421,25 @@ Takes the underlying generator to the first time the `fn` returns false.
 const positives = gentoo.range(1, Number.POSITIVE_INFINITY);
 
 const sum = gentoo.takeWhile(positives, (num) => num < 5) // yields 1, 2, 3, 4
+```
+
+## chain
+
+`chain([val]) -> gentoo`
+
+Allows chaining the operations, Underscore.js style. Call `value()` at the end of the chain to extract the value.
+
+```javascript
+function * makeGenerator () {
+  yield 1
+  yield 2
+  yield 3
+}
+
+gentoo.chain(makeGenerator())
+  .filter((num) => num < 3)
+  .loop()
+  .limit(5)
+  .reduce((memo, val) => memo + val, 0)
+  .value(); // 7
 ```
