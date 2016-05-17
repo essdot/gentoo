@@ -104,14 +104,11 @@ export function skip (gen, n) {
 export function take (gen, n) {
   const results = []
 
-  for (let i = 0; i < n; i++) {
-    let v = gen.next()
-
-    results.push(v.value)
-
-    if (v.done) {
-      break
+  for(let v of gen) {
+    if (results.length >= n) {
+      break;
     }
+    results.push(v);
   }
 
   return results

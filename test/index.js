@@ -160,6 +160,9 @@ test('take', t => {
   t.deepEqual(lib.take(makeInfiniteGenerator(), 2), [2, 4])
   t.deepEqual(lib.take(makeInfiniteGenerator(), 1), [2])
 
+  // Should return all the values if the iterator has fewer elements
+  t.deepEqual(lib.take(makeGenerator(), 10), [1, 2, 3])
+
   t.end()
 })
 
@@ -169,7 +172,7 @@ test('take w/generator that runs out', t => {
   t.end()
 
   function * makeGen () {
-    return 1
+    yield 1
   }
 })
 
