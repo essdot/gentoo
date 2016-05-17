@@ -18,6 +18,7 @@ Tools for [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScri
 * [everyN] (#everyN)
 * [reduce] (#reduce)
 * [range] (#range)
+* [limit] (#limit)
 
 ## accum
 
@@ -391,3 +392,20 @@ You can easily make an infinite stream by passing `Number.POSITIVE_INFINITY` to 
 ```javascript
 const infinite = gentoo.range(0, Number.POSITIVE_INFINITY)
 ```
+
+## limit
+
+`limit(gen, n) -> Generator`
+
+Limits the underlying generator to at most `n` values.
+
+```javascript
+function * makeGenerator () {
+  yield 1
+  yield 2
+  yield 3
+}
+
+const sum = gentoo.limit(makeGenerator(), 2) // yields 1, 2
+```
+

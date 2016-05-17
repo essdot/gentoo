@@ -277,6 +277,15 @@ test('range', t => {
   t.end()
 })
 
+test('limit', t => {
+
+  t.deepEqual([...lib.limit(makeGenerator(),1)], [1])
+  t.deepEqual([...lib.limit(makeGenerator(),3)], [1, 2, 3])
+  t.deepEqual([...lib.limit(makeGenerator(),30)], [1, 2, 3])
+
+  t.end()
+})
+
 function * makeGenerator () {
   yield 1
   yield 2

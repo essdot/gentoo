@@ -174,6 +174,17 @@ export function * range (start, stop, step) {
 
 }
 
+export function * limit (gen, n) {
+  let i = 0;
+  for (let v of gen) {
+    if (i++ < n) {
+      yield v;
+    }else {
+      break;
+    }
+  }
+}
+
 function identity (a, b) {
   return a === b
 }
