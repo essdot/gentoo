@@ -1,6 +1,6 @@
 import test from 'tape'
 
-import * as lib from '../src'
+import * as lib from '../src/gentoo.js'
 
 test('accum', t => {
   const accumGen = lib.accum(makeInfiniteGenerator())
