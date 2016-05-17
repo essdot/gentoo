@@ -278,10 +278,18 @@ test('range', t => {
 })
 
 test('limit', t => {
-
   t.deepEqual([...lib.limit(makeGenerator(),1)], [1])
   t.deepEqual([...lib.limit(makeGenerator(),3)], [1, 2, 3])
   t.deepEqual([...lib.limit(makeGenerator(),30)], [1, 2, 3])
+
+  t.end()
+})
+
+test('takeWhile', t => {
+  const positives = () => lib.range(1, Number.POSITIVE_INFINITY);
+
+  t.deepEqual([...lib.takeWhile(positives(), (num) => num < 5)], [1, 2, 3, 4]);
+  t.deepEqual([...lib.takeWhile(positives(), (num) => num % 3 !== 0)], [1, 2]);
 
   t.end()
 })

@@ -185,6 +185,16 @@ export function * limit (gen, n) {
   }
 }
 
+export function * takeWhile (gen, fn) {
+  for (let v of gen) {
+    if (fn(v)) {
+      yield v;
+    } else {
+      break;
+    }
+  }
+}
+
 function identity (a, b) {
   return a === b
 }

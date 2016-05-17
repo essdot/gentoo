@@ -19,6 +19,7 @@ Tools for [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScri
 * [reduce] (#reduce)
 * [range] (#range)
 * [limit] (#limit)
+* [takeWhile] (#takeWhile)
 
 ## accum
 
@@ -409,3 +410,14 @@ function * makeGenerator () {
 const sum = gentoo.limit(makeGenerator(), 2) // yields 1, 2
 ```
 
+## takeWhile
+
+`takeWhile(gen, fn) -> Generator`
+
+Takes the underlying generator to the first time the `fn` returns false.
+
+```javascript
+const positives = gentoo.range(1, Number.POSITIVE_INFINITY);
+
+const sum = gentoo.takeWhile(positives, (num) => num < 5) // yields 1, 2, 3, 4
+```
