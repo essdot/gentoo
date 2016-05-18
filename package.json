@@ -2,7 +2,7 @@
   "name": "gentoo",
   "version": "3.0.0",
   "description": "Generator tools",
-  "main": "lib/index.js",
+  "main": "lib/gentoo.js",
   "scripts": {
     "test": "babel-node test/index.js --presets es2015",
     "build": "babel src --out-dir lib --presets es2015 --plugins babel-plugin-transform-es2015-modules-umd"
