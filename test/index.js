@@ -147,10 +147,10 @@ test('pluck', t => {
 test('skip', t => {
   const gen = makeInfiniteGenerator()
 
-  lib.skip(gen, 2)
+  const skippedGen = lib.skip(gen, 2)
 
-  t.equal(gen.next().value, 6)
-  t.equal(gen.next().value, 8)
+  t.equal(skippedGen.next().value, 6)
+  t.equal(skippedGen.next().value, 8)
 
   t.end()
 })

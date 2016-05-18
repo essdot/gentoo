@@ -93,10 +93,13 @@ export function * pluck (gen, name) {
   }
 }
 
-export function skip (gen, n) {
-  for (let i = 0; i < n; i++) {
-    if (gen.next().done) {
-      return
+export function * skip (gen, n) {
+  let i = 0
+  for (let v of gen) {
+    if (i < n) {
+      i++
+    }else {
+      yield v
     }
   }
 }

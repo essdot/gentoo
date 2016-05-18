@@ -262,9 +262,9 @@ pluckGen.next().value
 
 ## skip
 
-`skip(gen, n) -> void`
+`skip(gen, n) -> Generator`
 
-Reads `n` values from `gen` and throws them away.
+Skips the first `n` values from `gen`.
 
 ```javascript
 function * genInfinite () {
@@ -276,15 +276,15 @@ function * genInfinite () {
 
 const gen = genInfinite()
 
-gentoo.skip(gen, 2)
+const skippedGen = gentoo.skip(gen, 2)
 
-gen.next().value
+skippedGen.next().value
 // 3
 
-gen.next().value
+skippedGen.next().value
 // 4
 
-gen.next().value
+skippedGen.next().value
 // 5
 ```
 
