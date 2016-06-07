@@ -93,10 +93,13 @@ export function * pluck (gen, name) {
   }
 }
 
-export function skip (gen, n) {
-  for (let i = 0; i < n; i++) {
-    if (gen.next().done) {
-      return
+export function * skip (gen, n) {
+  let i = 0
+  for (let v of gen) {
+    if (i < n) {
+      i++
+    }else {
+      yield v
     }
   }
 }
@@ -104,14 +107,11 @@ export function skip (gen, n) {
 export function take (gen, n) {
   const results = []
 
-  for (let i = 0; i < n; i++) {
-    let v = gen.next()
-
-    results.push(v.value)
-
-    if (v.done) {
-      break
+  for(let v of gen) {
+    if (results.length >= n) {
+      break;
     }
+    results.push(v);
   }
 
   return results
@@ -154,6 +154,62 @@ export function * everyN (gen, n, takeFirst = true) {
       count = 0
     }
   }
+}
+
+export function reduce (gen, fn, initial) {
+  let memo = initial
+
+  for (let v of gen) {
+	  memo = fn(memo, v);
+  }
+
+  return memo;
+}
+
+export function * range (start, stop, step) {
+  let modifiedStep = step || 1
+  let i = start
+
+  while (i < stop) {
+    yield i
+    i += modifiedStep
+  }
+
+}
+
+export function * limit (gen, n) {
+  let i = 0;
+  for (let v of gen) {
+    if (i++ < n) {
+      yield v;
+    }else {
+      break;
+    }
+  }
+}
+
+export function * takeWhile (gen, fn) {
+  for (let v of gen) {
+    if (fn(v)) {
+      yield v;
+    } else {
+      break;
+    }
+  }
+}
+
+export function chain(value) {
+  const wrapper = {}
+  wrapper._wrapped = value
+  const funcs = [accum, compose, dedupe, filter, forEach, lastValue, map, nthValue, partition, pluck, skip, take, loop, everyN, reduce, range, limit, takeWhile]
+  funcs.forEach((func) => {
+    wrapper[func.name] = (...args) => {
+      wrapper._wrapped = func(wrapper._wrapped, ...args)
+      return wrapper
+    }
+  })
+  wrapper.value = () => wrapper._wrapped;
+  return wrapper
 }
 
 function identity (a, b) {

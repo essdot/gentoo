@@ -1,6 +1,6 @@
 import test from 'tape'
 
-import * as lib from '../src'
+import * as lib from '../src/gentoo.js'
 
 test('accum', t => {
   const accumGen = lib.accum(makeInfiniteGenerator())
@@ -147,10 +147,10 @@ test('pluck', t => {
 test('skip', t => {
   const gen = makeInfiniteGenerator()
 
-  lib.skip(gen, 2)
+  const skippedGen = lib.skip(gen, 2)
 
-  t.equal(gen.next().value, 6)
-  t.equal(gen.next().value, 8)
+  t.equal(skippedGen.next().value, 6)
+  t.equal(skippedGen.next().value, 8)
 
   t.end()
 })
@@ -159,6 +159,9 @@ test('take', t => {
   t.deepEqual(lib.take(makeInfiniteGenerator(), 3), [2, 4, 6])
   t.deepEqual(lib.take(makeInfiniteGenerator(), 2), [2, 4])
   t.deepEqual(lib.take(makeInfiniteGenerator(), 1), [2])
+
+  // Should return all the values if the iterator has fewer elements
+  t.deepEqual(lib.take(makeGenerator(), 10), [1, 2, 3])
 
   t.end()
 })
@@ -169,7 +172,7 @@ test('take w/generator that runs out', t => {
   t.end()
 
   function * makeGen () {
-    return 1
+    yield 1
   }
 })
 
@@ -244,6 +247,62 @@ test('everyN', t => {
 
   t.equal(everyTen.next().value, 0)
   t.equal(everyTen.next().value, 10)
+
+  t.end()
+})
+
+test('reduce', t => {
+  const gen = makeGenerator;
+  const sum = lib.reduce(gen(), (memo, val) => memo + val, 0)
+  const product = lib.reduce(gen(), (memo, val) => memo * val, 1)
+
+  t.equal(sum, 6)
+  t.equal(product, 6)
+
+  t.end()
+
+})
+
+test('range', t => {
+  const to5 = lib.range(0, 5);
+  const from5to10 = lib.range(5, 10);
+  const from0to10every2 = lib.range(0, 10, 2);
+  const infinite = lib.range(0, Number.POSITIVE_INFINITY);
+
+  t.deepEqual([...to5], [0, 1, 2, 3, 4])
+  t.deepEqual([...from5to10], [5, 6, 7, 8, 9])
+  t.deepEqual([...from0to10every2], [0, 2, 4, 6, 8])
+  t.deepEqual([...lib.take(infinite, 5)], [0, 1, 2, 3, 4])
+
+  t.end()
+})
+
+test('limit', t => {
+  t.deepEqual([...lib.limit(makeGenerator(),1)], [1])
+  t.deepEqual([...lib.limit(makeGenerator(),3)], [1, 2, 3])
+  t.deepEqual([...lib.limit(makeGenerator(),30)], [1, 2, 3])
+
+  t.end()
+})
+
+test('takeWhile', t => {
+  const positives = () => lib.range(1, Number.POSITIVE_INFINITY);
+
+  t.deepEqual([...lib.takeWhile(positives(), (num) => num < 5)], [1, 2, 3, 4]);
+  t.deepEqual([...lib.takeWhile(positives(), (num) => num % 3 !== 0)], [1, 2]);
+
+  t.end()
+})
+
+test('chain', t => {
+
+  t.deepEqual([...lib.chain(makeGenerator()).filter((num) => num < 2).value()], [1]);
+  t.equal(lib.chain(makeGenerator())
+    .filter((num) => num < 3)
+    .loop()
+    .limit(5)
+    .reduce((memo, val) => memo + val, 0)
+    .value(), 7);
 
   t.end()
 })
